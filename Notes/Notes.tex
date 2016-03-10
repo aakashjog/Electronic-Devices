@@ -644,4 +644,110 @@ Therefore,
 	\end{enumerate}
 \end{solution}
 
+\section{Space Charge Neutrality}
+
+For a material to be neutral, the total negative charges must be equal to the total positive charges.
+Therefore,
+\begin{align*}
+	n_0 + {N_A}^- & = p_0 + {N_D}^-
+\end{align*}
+Also,
+\begin{align*}
+	n_0     & = N_C e^{-\frac{E_C - E_F}{k T}} \\
+	p_0     & = N_V e^{-\frac{E_F - E_V}{k T}} \\
+	{N_A}^- & = N_A f(E_A)                     \\
+	{N_D}^+ & = N_D \left( 1 - f(E_A) \right)
+\end{align*}
+Therefore,
+\begin{align*}
+	N_C e^{-\frac{E_C - E_F}{k T}} + N_A f(E_A) & = N_V e^{-\frac{E_F - E_V}{k T}} + N_D \left( 1 - f(E_D) \right)
+\end{align*}
+
+\clearpage
+\part{PN Junctions}
+
+\section{Step Junction}
+
+\begin{definition}[Electron affinity]
+	The electron affinity for a semiconductor is defined to be
+	\begin{align*}
+		q \chi & = E_{\text{vac}} - E_C
+	\end{align*}
+	where $E_{\text{vac}}$ is the energy of a free particle.
+	The electron affinity is material dependent.\\
+\end{definition}
+
+\begin{definition}[Semiconductor work function]
+	The semiconductor work function is defined to be
+	\begin{align*}
+		q \Phi_S & = E_{\text{vac}} - E_F
+	\end{align*}
+	The semiconductor work function is doping dependent.
+\end{definition}
+
+Consider a P-type semiconductor with $p = N_A$ and a N-type semiconductor with $n = N_D$.\\
+Let the two be placed separately.\\
+Let $E_{F_p}$ and $E_{F_n}$ be the Fermi levels for the P-type and the N-type semiconductors respectively.\\
+Therefore,
+\begin{align*}
+	q \chi       & = E_{\text{vac}} - E_C     \\
+	q \Phi_{S_p} & = E_{\text{vac}} - E_{F_p} \\
+	q \Phi_{S_n} & = E_{\text{vac}} - E_{F_n}
+\end{align*}
+Let these semiconductors be brought into contact as in \cref{fig:Structure_of_Step_PN_Junction} and allowed to reach equilibrium.
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}
+		\def\l{2};
+		\def\h{1};
+
+		\draw (-\l,-\h/2) rectangle (0,\h/2);
+		\draw (-,-\h/2) rectangle (\l,\h/2);
+
+		\node at (-\l/2,0) {P-type};
+		\node at (\l/2,0) {N-type};
+	\end{tikzpicture}
+	\caption{Structure of Step PN Junction}
+	\label{fig:Structure_of_Step_PN_Junction}
+\end{figure}
+At equilibrium, the Fermi levels must match up, and $E_F$ must be constant.\\
+~\\
+The carrier concentrations in the junction are as in \cref{fig:Carrier_Concentrations_in_Step_PN_Junction}.
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}
+		\def\xMIN{-4};
+		\def\xMAX{4};
+		\def\yMIN{-4};
+		\def\yMAX{4};
+		\def\NA{-2};
+		\def\ND{2};
+
+		\begin{scope}[stealth-stealth]
+			\draw (\xMIN,0) -- (\xMAX,0) node [right] {$x$};
+			\draw (0,\yMIN) -- (0,\yMAX);
+		\end{scope}
+
+		\begin{scope}
+			\draw (\xMIN,\NA) node [left] {$N_A$} -- (0,\NA);
+			\draw (0,\ND) -- (\xMAX,\ND) node [right] {$N_D$};
+			\node [above] at (\xMIN/2,\yMAX) {P-type};
+			\node [above] at (\xMAX/2,\yMAX) {N-type};
+		\end{scope}
+	\end{tikzpicture}
+	\caption{Carrier Concentrations in Step PN Junction}
+	\label{fig:Carrier_Concentrations_in_Step_PN_Junction}
+\end{figure}
+Therefore, the carriers diffuse from regions of higher concentration to regions of lower concentrations, i.e., the electrons diffuse from the N-type region to the P-type region, and the holes diffuse from the P-type region to the N-type region.\\
+This diffusion occurs in a region closer to the junction, and not in the regions near the ends.
+This region is called the depletion region.\\
+As these mobile carriers diffuse, they leave behind the ionized dopants, which are fixed charges.
+This causes an internal electric field $\mathcal{E}$ in the depletion region, directed from the N-type region to the P-type region.
+This generated electric field repels the diffusing carriers.
+Therefore, the diffusion is stopped.
+The width of the depletion region when the diffusion stops is denoted by $W$ or $W_d$.\\
+The width of the depletion region on the P-type side is denoted by $x_p$, and that on the N-type side is denoted by $x_n$.
+~\\
+The currents generated due to the drifting charge carriers are opposite in direction to the currents generated due to the diffusing charge carriers.
+Therefore, the net current in the PN junction is zero.\\
 \end{document}
