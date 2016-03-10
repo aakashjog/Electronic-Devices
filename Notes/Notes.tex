@@ -298,8 +298,8 @@ This can be used as a practical approximation.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width = 0.8\textwidth]{./Plots/fermi_function_for_intrinsic.pdf}
-	\caption{Position of $E_F$ for an intrinsic semiconductor}
-	\label{fig:Position_of_$E_F$_for_an_intrinsic_semiconductor}
+	\caption{Position of $E_F$ for an Intrinsic semiconductor}
+	\label{fig:Position_of_$E_F$_for_an_Intrinsic_semiconductor}
 \end{figure}
 
 \subsection{N-type Semiconductor}
@@ -379,17 +379,20 @@ Therefore,
 \begin{align*}
 	{n_i}^2        & = n_0 p_0                            \\
                        & = N_C N_V e^{-\frac{E_C - E_V}{k T}} \\
-	\therefore n_i & = \sqrt{N_C N_V} e^{-\frac{E_{\text{gap}}}{k T}}
+	\therefore n_i & = \sqrt{N_C N_V} e^{-\frac{E_{\text{gap}}}{2 k T}}
 \end{align*}
 Therefore,
 \begin{align*}
 	n & = N_C e^{-\frac{E_C - E_F}{k T}} \\
           & = N_C e^{-\frac{E_C - E_i}{k T}} e^{-\frac{E_i - E_F}{k T}}
 \end{align*}
+For an intrinsic material, i.e. when $E_F = E_i$,
+\begin{align*}
+	n & = n_i \\
+\end{align*}
 Therefore,
 \begin{align*}
-	n(E_f = E_i) & = n_i \\
-	\therefore n & = n_i e^{\frac{E_F - E_i}{k T}}
+	n & = n_i e^{\frac{E_F - E_i}{k T}}
 \end{align*}
 Similarly,
 \begin{align*}
@@ -505,7 +508,7 @@ Therefore,
 				\draw (\l,\eConduction) -- (\l,{\eValence - \h}) node [below] {$x = +L$};
 			\end{scope}
 		\end{tikzpicture}
-	\end{figure}<++>
+	\end{figure}
 	Assume that at $x = 0$,
 	\begin{align*}
 		E_F - E_i & = \frac{E_{\text{gap}}}{4}
