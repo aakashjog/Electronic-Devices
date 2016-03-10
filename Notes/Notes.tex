@@ -786,7 +786,7 @@ By Gauss' Law,
 where $\varepsilon$ is the relative permittivity of the material, and $\varepsilon_0$ is the permittivity of vacuum.\\
 The charge density in the junction is
 \begin{align*}
-	\rho(x) &=
+	\rho(x)                & =
 		\begin{cases}
 			-q N_A & ;\quad -x_p < x < 0 \\
 			q N_D  & ;\quad 0 < x < x_n  \\
@@ -836,38 +836,38 @@ Therefore, integrating,
 \begin{align*}
 	V(x) &=
 		\begin{cases}
-			\frac{q N_A}{\varepsilon \varepsilon_0} \left( \frac{x^2}{2} + x_p x + c_1 \right) &;\quad -x_p < x < 0\\
-			-\frac{q N_D}{\varepsilon \varepsilon_0} \left( \frac{x^2}{2} - x_n x + c_2 \right) &;\quad 0 < x < x_n\\
+			\frac{q N_A}{\varepsilon \varepsilon_0} \left( \frac{x^2}{2} + x_p x + c_1 \right)  & ;\quad -x_p < x < 0 \\
+			-\frac{q N_D}{\varepsilon \varepsilon_0} \left( \frac{x^2}{2} - x_n x + c_2 \right) & ;\quad 0 < x < x_n  \\
 		\end{cases}
 \end{align*}
 At the boundaries of the depletion region,
 \begin{align*}
-	V(-x_p) &= 0\\
-	V(x_n) &= V_{\text{BI}}
+	V(-x_p) & = 0 \\
+	V(x_n)  & = V_{\text{BI}}
 \end{align*}
 Therefore, substituting,
 \begin{align*}
-	c_1 &= \frac{{x_p}^2}{2}\\
-	c_2 &= -\frac{\varepsilon \varepsilon_0 V_{\text{BI}}}{q N_D} + \frac{{x_n}^2}{2}
+	c_1 & = \frac{{x_p}^2}{2} \\
+	c_2 & = -\frac{\varepsilon \varepsilon_0 V_{\text{BI}}}{q N_D} + \frac{{x_n}^2}{2}
 \end{align*}
 Therefore,
 \begin{align*}
 	V(x) &=
 		\begin{cases}
-			\frac{q N_A}{\varepsilon \varepsilon_0} \left( \frac{x^2}{2} + x_p x + \frac{{x_p}^2}{2} \right) &;\quad -x_p < x < 0\\
-			\frac{q N_D}{\varepsilon \varepsilon_0} \left( \frac{x^2}{2} - x_n x + \frac{{x_n}^2}{2} \right) + V_{\text{BI}}\\
+			\frac{q N_A}{\varepsilon \varepsilon_0} \left( \frac{x^2}{2} + x_p x + \frac{{x_p}^2}{2} \right)                  & ;\quad -x_p < x < 0 \\
+			\frac{q N_D}{\varepsilon \varepsilon_0} \left( \frac{x^2}{2} - x_n x + \frac{{x_n}^2}{2} \right) + V_{\text{BI}} \\
 		\end{cases}\\
 	&=
 		\begin{cases}
-			\frac{q N_A}{2 \varepsilon \varepsilon_0} (x + x_p)^2 &;\quad -x_p < x < 0\\
-			-\frac{q N_D}{2 \varepsilon \varepsilon_0} (x - x_n)^2 + V_{\text{BI}} &;\quad 0 < x < x_n\\
+			\frac{q N_A}{2 \varepsilon \varepsilon_0} (x + x_p)^2                  & ;\quad -x_p < x < 0 \\
+			-\frac{q N_D}{2 \varepsilon \varepsilon_0} (x - x_n)^2 + V_{\text{BI}} & ;\quad 0 < x < x_n  \\
 		\end{cases}
 \end{align*}
 
 \subsection{Energy Bands}
 
 \begin{align*}
-	\dod{E}{x} &= -q V_{\text{BI}}
+	\dod{E}{x} & = -q V_{\text{BI}}
 \end{align*}
 Therefore, the energy band diagram for the junction is as in \cref{fig:Energy_Band_Diagram_for_PN_Junction}.
 \begin{figure}[h]
@@ -919,28 +919,28 @@ Therefore, the energy band diagram for the junction is as in \cref{fig:Energy_Ba
 
 By definition, the builtin voltage is
 \begin{align*}
-	q V_{\text{BI}} &= (E_C)_{\text{P-type side}} - (E_C)_{\text{N-type side}}\\
-	&= (E_i - E_F)_{\text{P-type side}} + (E_F - E_i)_{\text{N-type side}}\\
-	&= k T \ln\left( \frac{p}{n_i} \right) + k T \ln\left( \frac{n}{n_i} \right)\\
-	&= k T \ln\left( \frac{N_A}{n_i} \right) + k T \ln\left( \frac{N_D}{n_i} \right)\\
-	&= k T \ln\left( \frac{N_A N_D}{{n_i}^2} \right)\\
-	\therefore V_{\text{BI}} &= \frac{k T}{q} \ln\left( \frac{N_A N_D}{{n_i}^2} \right)
+	q V_{\text{BI}}          & = (E_C)_{\text{P-type side}} - (E_C)_{\text{N-type side}}                       \\
+                                 & = (E_i - E_F)_{\text{P-type side}} + (E_F - E_i)_{\text{N-type side}}           \\
+                                 & = k T \ln\left( \frac{p}{n_i} \right) + k T \ln\left( \frac{n}{n_i} \right)     \\
+                                 & = k T \ln\left( \frac{N_A}{n_i} \right) + k T \ln\left( \frac{N_D}{n_i} \right) \\
+                                 & = k T \ln\left( \frac{N_A N_D}{{n_i}^2} \right)                                 \\
+	\therefore V_{\text{BI}} & = \frac{k T}{q} \ln\left( \frac{N_A N_D}{{n_i}^2} \right)
 \end{align*}
 
 \subsection{Width of Depletion Region}
 
 For step junctions,
 \begin{align*}
-	W &= \sqrt{\frac{2 \varepsilon \varepsilon_0 V_{\text{BI}}}{q} \left( \frac{N_A + N_D}{N_A N_D} \right)}\\
-	x_p &= \frac{W N_D}{N_A + N_D}\\
-	x_n &= \frac{W N_A}{N_A + N_D}
+	W   & = \sqrt{\frac{2 \varepsilon \varepsilon_0 V_{\text{BI}}}{q} \left( \frac{N_A + N_D}{N_A N_D} \right)} \\
+	x_p & = \frac{W N_D}{N_A + N_D}                                                                             \\
+	x_n & = \frac{W N_A}{N_A + N_D}
 \end{align*}
 
 \begin{question}
 	A silicon PN step junction at equilibrium at $300 \kelvin$ has
 	\begin{align*}
-		N_A &= 10^{16} \si{\per\centi\metre\cubed}\\
-		N_D &= 10^{16} \si{\per\centi\metre\cubed}
+		N_A & = 10^{16} \si{\per\centi\metre\cubed} \\
+		N_D & = 10^{16} \si{\per\centi\metre\cubed}
 	\end{align*}
 	\begin{enumerate}
 		\item Sketch $\rho(x)$.
@@ -952,23 +952,23 @@ For step junctions,
 	\begin{enumerate}[leftmargin=*]
 		\item
 			\begin{align*}
-				V_{\text{BI}} &= \frac{k T}{q} \ln\left( \frac{N_A N_D}{{n_i}^2} \right)\\
-				&= \left( 0.026 \volt \right) \ln\left( \frac{10^{32}}{10^{20}} \right)\\
-				&= 0.718 \volt
+				V_{\text{BI}} & = \frac{k T}{q} \ln\left( \frac{N_A N_D}{{n_i}^2} \right)              \\
+                                              & = \left( 0.026 \volt \right) \ln\left( \frac{10^{32}}{10^{20}} \right) \\
+                                              & = 0.718 \volt
 			\end{align*}
 			Therefore,
 			\begin{align*}
-				W &= \sqrt{\frac{2 \varepsilon \varepsilon_0 V_{\text{BI}}}{q} \left( \frac{N_A + N_D}{N_A N_D} \right)}\\
-				&= \sqrt{\frac{(2) (11.8) \left( 8.85 \times 10^{-14} \si{\farad\per\centi\metre} \right) (0.718 \volt)}{1.6 \times 10^{-19} \coulomb} \left( \frac{2 \times 10^{16}}{10^{32}} \si{\centi\metre\cubed} \right)}\\
-				&= 4.32 \times 10^{-5} \si{\centi\metre}\\
-				&= 0.432 \si{\micro\metre}
+				W & = \sqrt{\frac{2 \varepsilon \varepsilon_0 V_{\text{BI}}}{q} \left( \frac{N_A + N_D}{N_A N_D} \right)}                                                                                                          \\
+                                  & = \sqrt{\frac{(2) (11.8) \left( 8.85 \times 10^{-14} \si{\farad\per\centi\metre} \right) (0.718 \volt)}{1.6 \times 10^{-19} \coulomb} \left( \frac{2 \times 10^{16}}{10^{32}} \si{\centi\metre\cubed} \right)} \\
+                                  & = 4.32 \times 10^{-5} \si{\centi\metre}                                                                                                                                                                        \\
+                                  & = 0.432 \si{\micro\metre}
 			\end{align*}
 			Therefore,
 			\begin{align*}
-				N_D x_n &= N_A x_p\\
-				\therefore x_n &= x_p\\
-				&= \frac{W}{2}\\
-				&= 0.216 \si{\micro\metre}
+				N_D x_n        & = N_A x_p     \\
+				\therefore x_n & = x_p         \\
+                                               & = \frac{W}{2} \\
+                                               & = 0.216 \si{\micro\metre}
 			\end{align*}
 			Therefore,
 			\begin{figure}[H]
@@ -1005,9 +1005,9 @@ For step junctions,
 			The field is maximum at the interface of the two regions.
 			Therefore,
 			\begin{align*}
-				\mathcal{E}_{\text{max}} &= \frac{q N_D x_p}{\varepsilon \varepsilon_0}\\
-				&= \frac{\left( 1.6 \times 10^{-19} \coulomb \right) \left( 10^{16} \si{\per\centi\metre\cubed} \right) \left( 2.16 \times 10^{-5} \si{\centi\metre} \right)}{(11.8) \left( 8.85 \times 10^{-14} \si{\farad\per\centi\metre} \right)}\\
-				&= 3.31 \times 10^4 \si{\volt\per\centi\metre}
+				\mathcal{E}_{\text{max}} & = \frac{q N_D x_p}{\varepsilon \varepsilon_0}                                                                                                                                                                                        \\
+                                                         & = \frac{\left( 1.6 \times 10^{-19} \coulomb \right) \left( 10^{16} \si{\per\centi\metre\cubed} \right) \left( 2.16 \times 10^{-5} \si{\centi\metre} \right)}{(11.8) \left( 8.85 \times 10^{-14} \si{\farad\per\centi\metre} \right)} \\
+                                                         & = 3.31 \times 10^4 \si{\volt\per\centi\metre}
 			\end{align*}
 	\end{enumerate}
 \end{solution}
@@ -1015,8 +1015,8 @@ For step junctions,
 \begin{question}
 	A silicon PN step junction at equilibrium at $300 \kelvin$ has
 	\begin{align*}
-		N_A &= 10^{16} \si{\per\centi\metre\cubed}\\
-		N_D &= 10^{17} \si{\per\centi\metre\cubed}
+		N_A & = 10^{16} \si{\per\centi\metre\cubed} \\
+		N_D & = 10^{17} \si{\per\centi\metre\cubed}
 	\end{align*}
 	\begin{enumerate}
 		\item Sketch $\rho(x)$.
@@ -1029,24 +1029,24 @@ For step junctions,
 	\begin{enumerate}[leftmargin=*]
 		\item 
 			\begin{align*}
-				N_A x_p &= N_D x_n\\
-				\therefore 10^{16} x_p &= 10^{17} x_n\\
-				\therefore x_p &= 10 x_n
+				N_A x_p                & = N_D x_n     \\
+				\therefore 10^{16} x_p & = 10^{17} x_n \\
+				\therefore x_p         & = 10 x_n
 			\end{align*}
 			Therefore,
 			\begin{align*}
-				V_{\text{BI}} &= \frac{k T}{q} \ln\left( \frac{N_A N_D}{{n_i}^2} \right)\\
-				&= 0.778 \volt
+				V_{\text{BI}} & = \frac{k T}{q} \ln\left( \frac{N_A N_D}{{n_i}^2} \right) \\
+                                              & = 0.778 \volt
 			\end{align*}
 			Therefore,
 			\begin{align*}
-				W &= \sqrt{\frac{2 \varepsilon \varepsilon_0 V_{\text{BI}}}{q} \frac{N_A + N_D}{N_A N_D}}\\
-				&= 0.334 \si{\micro\metre}
+				W & = \sqrt{\frac{2 \varepsilon \varepsilon_0 V_{\text{BI}}}{q} \frac{N_A + N_D}{N_A N_D}} \\
+                                  & = 0.334 \si{\micro\metre}
 			\end{align*}
 			Therefore,
 			\begin{align*}
-				x_n &= 0.031 \si{\micro\metre}\\
-				x_p &= 0.303 \si{\micro\metre}
+				x_n & = 0.031 \si{\micro\metre} \\
+				x_p & = 0.303 \si{\micro\metre}
 			\end{align*}
 			Therefore,
 			\begin{figure}[H]
@@ -1082,14 +1082,14 @@ For step junctions,
 		\item
 			The field is maximum at the interface of the two regions.
 			\begin{align*}
-				\mathcal{E}_{max} &= \frac{q N_D x_n}{\varepsilon \varepsilon_0}\\
-				&= \frac{\left( 1.6 \times 10^{-19} \right) \left( 10^{17} \right) \left( 0.031 \times 10^{-4} \right)}{(11.8) \left( 8.85 \times 10^{-14} \right)}\\
-				&= 4.75 \times 10^4 \si{\volt\per\centi\metre}
+				\mathcal{E}_{max} & = \frac{q N_D x_n}{\varepsilon \varepsilon_0}                                                                                                      \\
+                                                  & = \frac{\left( 1.6 \times 10^{-19} \right) \left( 10^{17} \right) \left( 0.031 \times 10^{-4} \right)}{(11.8) \left( 8.85 \times 10^{-14} \right)} \\
+                                                  & = 4.75 \times 10^4 \si{\volt\per\centi\metre}
 			\end{align*}
 			The field at the ends of the depletion region is
 			\begin{align*}
-				\mathcal{E}(-x_p) &= 0\\
-				\mathcal{E}(x_n) &= 0
+				\mathcal{E}(-x_p) & = 0 \\
+				\mathcal{E}(x_n)  & = 0
 			\end{align*}
 			Therefore,
 			\begin{figure}[H]
@@ -1123,11 +1123,11 @@ For step junctions,
 		\item
 			Let the potential at $x = -x_p$ be
 			\begin{align*}
-				V(-x_p) &= 0
+				V(-x_p) & = 0
 			\end{align*}
 			Therefore, by definition,
 			\begin{align*}
-				V(x_n) &= V_{\text{BI}}
+				V(x_n) & = V_{\text{BI}}
 			\end{align*}
 			Therefore,
 			\begin{figure}[H]
@@ -1174,13 +1174,13 @@ For step junctions,
 	\begin{enumerate}[leftmargin=*]
 		\item
 			\begin{align*}
-				Q_+ &= q N_D A \left( x_n - \frac{x_i}{2} \right)\\
-				Q_- &= q N_A A \left( x_p - \frac{x_i}{2} \right)
+				Q_+ & = q N_D A \left( x_n - \frac{x_i}{2} \right) \\
+				Q_- & = q N_A A \left( x_p - \frac{x_i}{2} \right)
 			\end{align*}
 			Therefore, as the sample is electrically neutral,
 			\begin{align*}
-				Q_+ &= Q_-\\
-				\therefore N_D \left( x_n - \frac{x_i}{2} \right) &= N_A \left( x_p - \frac{x_i}{2} \right)
+				Q_+                                               & = Q_- \\
+				\therefore N_D \left( x_n - \frac{x_i}{2} \right) & = N_A \left( x_p - \frac{x_i}{2} \right)
 			\end{align*}
 			Therefore,
 			\begin{align*}
@@ -1193,67 +1193,67 @@ For step junctions,
 			\end{align*}
 		\item
 			\begin{align*}
-				\dod{\mathcal{E}}{x} &= \frac{\rho}{\varepsilon \varepsilon_0}
+				\dod{\mathcal{E}}{x} & = \frac{\rho}{\varepsilon \varepsilon_0}
 			\end{align*}
 			Therefore,
 			\begin{align*}
 				\mathcal{E}(x) &=
 					\begin{cases}
 						-\frac{q N_A}{\varepsilon \varepsilon_0} x + c_1 & ;\quad -x_p < x < -\frac{x_i}{2}          \\
-						c_2 & ;\quad -\frac{x_i}{2} < x < \frac{x_i}{2} \\
-						\frac{q N_D}{\varepsilon \varepsilon_0} x + c_2 & ;\quad \frac{x_i}{2} < x < x_n            \\
+						c_2                                              & ;\quad -\frac{x_i}{2} < x < \frac{x_i}{2} \\
+						\frac{q N_D}{\varepsilon \varepsilon_0} x + c_2  & ;\quad \frac{x_i}{2} < x < x_n            \\
 					\end{cases}
 			\end{align*}
 			The electric field at the ends of the depletion region is
 			\begin{align*}
-				\mathcal{E}(-x_p) &= 0\\
-				\mathcal{E}(x_n) &= 0
+				\mathcal{E}(-x_p) & = 0 \\
+				\mathcal{E}(x_n)  & = 0
 			\end{align*}
 			The electric field must be continuous at the ends of the intrinsic region.
 			Therefore, solving,
 			\begin{align*}
-				c_1 &= -\frac{q N_A x_p}{\varepsilon \varepsilon_0}\\
-				c_2 &= -\frac{q N_A}{\varepsilon \varepsilon_0} \left( x_p - \frac{x_i}{2} \right)\\
-				&= \frac{q N_D}{\varepsilon \varepsilon_0} \left( \frac{x_i}{2} - x_n \right)\\
-				c_3 &= -\frac{q N_D x_n}{\varepsilon \varepsilon_0}
+				c_1 & = -\frac{q N_A x_p}{\varepsilon \varepsilon_0}                                \\
+				c_2 & = -\frac{q N_A}{\varepsilon \varepsilon_0} \left( x_p - \frac{x_i}{2} \right) \\
+                                    & = \frac{q N_D}{\varepsilon \varepsilon_0} \left( \frac{x_i}{2} - x_n \right)  \\
+				c_3 & = -\frac{q N_D x_n}{\varepsilon \varepsilon_0}
 			\end{align*}
 			Therefore,
 			\begin{align*}
 				\mathcal{E}(x) &=
 					\begin{cases}
-						-\frac{q N_A}{\varepsilon \varepsilon_0} (x + x_p) &;\quad -x_p < x < -\frac{x_i}{2}\\
-						-\frac{q N_A}{\varepsilon \varepsilon_0} \left( x_p - \frac{x_i}{2} \right) &;\quad -\frac{x_i}{2} < x < \frac{x_i}{2}\\
-						\frac{q N_D}{\varepsilon \varepsilon_0} (x - x_n) &;\quad \frac{x_i}{2} < x < x_p\\
+						-\frac{q N_A}{\varepsilon \varepsilon_0} (x + x_p)                          & ;\quad -x_p < x < -\frac{x_i}{2}          \\
+						-\frac{q N_A}{\varepsilon \varepsilon_0} \left( x_p - \frac{x_i}{2} \right) & ;\quad -\frac{x_i}{2} < x < \frac{x_i}{2} \\
+						\frac{q N_D}{\varepsilon \varepsilon_0} (x - x_n)                           & ;\quad \frac{x_i}{2} < x < x_p            \\
 					\end{cases}
 			\end{align*}
 		\item
 			\begin{align*}
-				\dod{V}{x} &= -\mathcal{E}
+				\dod{V}{x} & = -\mathcal{E}
 			\end{align*}
 			Therefore,
 			\begin{align*}
 				V(x) &=
 					\begin{cases}
-						\frac{q N_A}{\varepsilon \varepsilon_0} \left( \frac{x^2}{2} + x_p x + c_1 \right) &;\quad -x_p < x < -\frac{x_i}{2}\\
-						\frac{q N_A}{\varepsilon \varepsilon_0} \left( x_p - \frac{x_i}{2} \right) x + c_2 &;\quad -\frac{x_i}{2} < x < \frac{x_i}{2}\\
-						-\frac{q N_D}{\varepsilon \varepsilon_0} \left( \frac{x^2}{2} - x_n x + c_3 \right) &;\quad \frac{x_1}{2} < x < x_n\\
+						\frac{q N_A}{\varepsilon \varepsilon_0} \left( \frac{x^2}{2} + x_p x + c_1 \right)  & ;\quad -x_p < x < -\frac{x_i}{2}          \\
+						\frac{q N_A}{\varepsilon \varepsilon_0} \left( x_p - \frac{x_i}{2} \right) x + c_2  & ;\quad -\frac{x_i}{2} < x < \frac{x_i}{2} \\
+						-\frac{q N_D}{\varepsilon \varepsilon_0} \left( \frac{x^2}{2} - x_n x + c_3 \right) & ;\quad \frac{x_1}{2} < x < x_n            \\
 					\end{cases}
 			\end{align*}
 			Let the potential at $x = -x_p$ be
 			\begin{align*}
-				V(-x_p) &= 0
+				V(-x_p) & = 0
 			\end{align*}
 			Therefore, by definition,
 			\begin{align*}
-				V(x_n) &= V_{\text{BI}}
+				V(x_n) & = V_{\text{BI}}
 			\end{align*}
 			Therefore, solving and sustituting,
 			\begin{align*}
 				V(x) &=
 					\begin{cases}
-						\frac{q N_A}{2 \varepsilon \varepsilon_0} (x + x_p)^2 &;\quad -x_p < x < -\frac{x_i}{2}\\
-						\frac{q N_A}{\varepsilon \varepsilon_0} \left( x_p - \frac{x_i}{2} \right) \left( x_p + \frac{x_i}{2} + 2 x \right) &;\quad -\frac{x_i}{2} < x < \frac{x_i}{2}\\
-						V_{\text{BI}} - \frac{q N_D}{2 \varepsilon \varepsilon_0} (x_n - x)^2 &;\quad \frac{x_1}{2} < x < x_n\\
+						\frac{q N_A}{2 \varepsilon \varepsilon_0} (x + x_p)^2                                                               & ;\quad -x_p < x < -\frac{x_i}{2}          \\
+						\frac{q N_A}{\varepsilon \varepsilon_0} \left( x_p - \frac{x_i}{2} \right) \left( x_p + \frac{x_i}{2} + 2 x \right) & ;\quad -\frac{x_i}{2} < x < \frac{x_i}{2} \\
+						V_{\text{BI}} - \frac{q N_D}{2 \varepsilon \varepsilon_0} (x_n - x)^2                                               & ;\quad \frac{x_1}{2} < x < x_n            \\
 					\end{cases}
 			\end{align*}
 	\end{enumerate}
