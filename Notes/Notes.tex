@@ -1259,4 +1259,406 @@ For step junctions,
 	\end{enumerate}
 \end{solution}
 
+\section{PN Junction with Linearly Graded Doping Profile}
+
+Consider a PN junction such that
+\begin{align*}
+	N_D - N_A & = a x
+\end{align*}
+where $a > 0$.\\
+Therefore, the doping profile is as in \cref{fig:Doping_Profile_in_Linearly_Doped_PN_Junction}.
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}
+		\def\xMIN{-4};
+		\def\xMAX{4};
+		\def\yMIN{-4};
+		\def\yMAX{4};
+		\def\a{1};
+		\def\xP{2};
+		\def\xN{2};
+
+		\begin{scope}[stealth-stealth]
+			\draw (\xMIN,0) -- (\xMAX,0) node [right] {$x$};
+			\draw (0,\yMIN) -- (0,\yMAX) node [above] {$N_D - N_A$};
+		\end{scope}
+
+		\begin{scope}
+			\draw (\xMIN,\a*\xMIN) -- (\xMIN,\a*\xMIN);
+			\draw (\xMIN,\a*\xMIN) -- (0,0);
+			\draw (0,0) -- (\xMAX,\a*\xMAX);
+			\draw (\xMAX,\a*\xMAX) -- (\xMAX,\a*\xMAX);
+		\end{scope}
+
+		\begin{scope}
+			\node at (\xMIN/2,\yMAX) {P-type};
+			\node at (\xMAX/2,\yMAX) {N-type};
+		\end{scope}
+	\end{tikzpicture}
+	\caption{Doping Profile in Linearly Doped PN Junction}
+	\label{fig:Doping_Profile_in_Linearly_Doped_PN_Junction}
+\end{figure}
+
+\subsection{Charge Density}
+
+\begin{align*}
+	\rho(x) &=
+		\begin{cases}
+			q a x & ;\quad -x_p \le x \le 0 \\
+			q a x & ;\quad 0 \le x \le x_p  \\
+		\end{cases}\\
+	&= q a x
+\end{align*}
+for $-x_p \le x \le x_n$.
+Therefore, the charge density is as in \cref{fig:Charge_Distribution_in_Linearly_Doped_PN_Junction}.
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}
+		\def\xMIN{-4};
+		\def\xMAX{4};
+		\def\yMIN{-4};
+		\def\yMAX{4};
+		\def\a{1};
+		\def\xP{2};
+		\def\xN{2};
+
+		\begin{scope}[stealth-stealth]
+			\draw (\xMIN,0) -- (\xMAX,0) node [right] {$x$};
+			\draw (0,\yMIN) -- (0,\yMAX) node [above] {$\rho(x)$};
+		\end{scope}
+
+		\begin{scope}
+			\draw (-\xP,0) -- (-\xP,-\a*\xP);
+			\draw (-\xP,-\a*\xP) -- (0,0);
+			\draw (0,0) -- (\xN,\a*\xN);
+			\draw (\xN,\a*\xN) -- (\xN,0);
+		\end{scope}
+
+		\begin{scope}
+			\node at (\xMIN/2,\yMAX) {P-type};
+			\node at (\xMAX/2,\yMAX) {N-type};
+		\end{scope}
+
+		\begin{scope}
+			\filldraw (-\xP,0) circle (1pt) node [above] {$-x_p$};
+			\filldraw (\xN,0) circle (1pt) node [below] {$x_n$};
+			\filldraw (0,-\a*\xP) circle (1pt) node [right] {$-q a x_p$};
+			\filldraw (0,\a*\xN) circle (1pt) node [left] {$-q a x_n$};
+		\end{scope}
+	\end{tikzpicture}
+	\caption{Charge Distribution in Linearly Doped PN Junction}
+	\label{fig:Charge_Distribution_in_Linearly_Doped_PN_Junction}
+\end{figure}
+
+\subsection{Electric Field}
+
+By Gauss' Law,
+\begin{align*}
+	\mathcal{E}(x) & = \frac{q a}{\varepsilon \varepsilon_0} \left( \frac{x^2}{2} + c \right)
+\end{align*}
+for $-x_p \le x \le x_n$.\\
+As the electric field must be continuous,
+\begin{align*}
+	\mathcal{E}(-x_p) & = 0 \\
+	\mathcal{E}(x_n)  & = 0
+\end{align*}
+Therefore, solving and substituting,
+\begin{align*}
+	\mathcal{E}(x) & = \frac{q \alpha}{2 \varepsilon \varepsilon_0} \left( x^2 - \frac{W^2}{4} \right)
+\end{align*}
+
+\subsection{Width of Depletion Region}
+
+As the junction is electrically neutral,
+\begin{align*}
+	\frac{q a {x_n}^2}{2} & = \frac{q a {x_p}^2}{2} \\
+	\therefore x_n        & = x_p                   \\
+                              & = \frac{W}{2}
+\end{align*}
+Also,
+\begin{align*}
+	\dod{V}{x}      & = -\mathcal{E}(x) \\
+	\therefore V(x) & = -\frac{q a}{2 \varepsilon \varepsilon_0} \left( \frac{x^3}{3} - \frac{W^2}{4} x + c \right)
+\end{align*}
+Let the potential at $-x_p$ be zero.\\
+Therefore, solving and substituting,
+\begin{align*}
+	V(x) & = -\frac{q a}{6 \varepsilon \varepsilon_0} \left( x^3 - 3 \frac{W^2}{4} x - \frac{2}{8} W^3 \right)
+\end{align*}
+Therefore, by definition,
+\begin{align*}
+	V_{\text{BI}} & = V(x_n)                                                                                                                \\
+                      & = -\frac{q a}{6 \varepsilon \varepsilon_0} \left( {x_n}^3 - 3 \frac{W^2}{4} x_n - \frac{2}{8} W^3 \right)
+                      & = -\frac{q a}{6 \varepsilon \varepsilon_0} \left( \frac{W^3}{8} - 4 \frac{W^2}{4} \frac{W}{2} - \frac{2}{8} W^3 \right) \\
+                      & = \frac{q a}{12 \varepsilon \varepsilon_0} W^3                                                                          \\
+	\therefore W  & = \left( \frac{12 V_{\text{BI}} \varepsilon \varepsilon_0}{q \alpha} \right)^{\frac{1}{3}}
+\end{align*}
+
+\subsection{Electrostatic Potential}
+
+\begin{align*}
+	\mathcal{E}(x) & = -\frac{k T}{q} \frac{\dod{n}{x}}{n}               \\
+                       & = -\frac{k T}{q} \frac{\dod{\alpha x}{x}}{\alpha x} \\
+                       & = -\frac{k T}{q} \frac{1}{x}
+\end{align*}
+Therefore,
+\begin{align*}
+	V(x) \propto \ln(x)
+\end{align*}
+Therefore,
+\begin{align*}
+	V_{\text{BI}} & = \frac{k T}{q} \ln\left( \frac{N_D(x_n) N_A(-x_p)}{{n_i}^2} \right)    \\
+                      & = \frac{k T}{q} \ln\left( \frac{\alpha x_n \alpha x_p}{{n_i}^2} \right) \\
+                      & = \frac{k T}{q} \ln\left( \frac{\alpha^2 \left( \frac{W}{2} \right)^2}{{n_i}^2} \right)
+\end{align*}
+
+\begin{question}
+	Consider a silicon PN junction, at equilibrium at $300 \kelvin$, with doping
+	\begin{align*}
+		N_D - N_A &=
+			\begin{cases}
+				-N_A     & ;\quad x < 0 \\
+				\alpha x & ;\quad x > 0 \\
+			\end{cases}
+	\end{align*}
+	Find
+	\begin{enumerate}
+		\item Charge density
+		\item Relation between $x_n$ and $x_p$
+		\item Electric field
+		\item Electrostatic potential
+	\end{enumerate}<++>
+\end{question}<++>
+
+\begin{solution}
+	\begin{enumerate}[leftmargin=*]
+		\item
+			\begin{align*}
+				\rho(x) &=
+					\begin{cases}
+						-q N_A   & ;\quad x < 0 \\
+						q \alpha & ;\quad x > 0 \\
+					\end{cases}
+			\end{align*}
+		\item
+			As the junction is electrically neutral, the area under the curve of $\rho(x)$ on the P-type side must be equal to that on the N-type side.
+			Therefore,
+			\begin{align*}
+				q N_A x_p          & = \frac{1}{2} (q \alpha x_n) (x_n) \\
+				\therefore N_A x_p & = \frac{1}{2} \alpha {x_n}^2
+			\end{align*}
+		\item
+			\begin{align*}
+				\mathcal{E}(x) &=
+					\begin{cases}
+						-\frac{q N_A}{\varepsilon \varepsilon_0} (x + c_1) &;\quad -x_p \le x \le 0\\
+						\frac{q \alpha}{\varepsilon \varepsilon_0} \left( \frac{x^2}{2} + c_2 \right) &;\quad 0 \le x \le x_n\\
+					\end{cases}
+			\end{align*}
+			At the boundaries of the depletion region, the electric field must be zero.
+			Therefore,
+			\begin{align*}
+				\mathcal{E}(-x_p) & = 0 \\
+				\mathcal{E}(x_n)  & = 0 \\
+			\end{align*}
+			Therefore, solving,
+			\begin{align*}
+				c_1 & = x_p \\
+				c_2 & = -\frac{{x_n}^2}{2}
+			\end{align*}
+			Therefore,
+			\begin{align*}
+				\mathcal{E}(x) &=
+					\begin{cases}
+						-\frac{q N_A}{\varepsilon \varepsilon_0} (x + x_p)                        & ;\quad -x_p \le x \le 0 \\
+						\frac{q \alpha}{2 \varepsilon \varepsilon_0} \left( x_2 - {x_n}^2 \right) & ;\quad 0 \le x \le x_n  \\
+					\end{cases}
+			\end{align*}
+		\item
+			\begin{align*}
+				\dod{V}{x} &= \mathcal{E}(x)\\
+				\therefore V(x) &=
+					\begin{cases}
+						\frac{q N_A}{\varepsilon \varepsilon_0} \left( \frac{x^2}{2} + x_p x + c_1 \right)         & ;\quad -x_p \le x \le 0 \\
+						-\frac{q \alpha}{\varepsilon \varepsilon_0} \left( \frac{x^3}{3} - {x_n}^2 x + c_2 \right) & ;\quad 0 \le x \le x_n  \\
+					\end{cases}
+			\end{align*}
+			Let the potential at $-x_p$ be zero.
+			Therefore, by definition,
+			\begin{align*}
+				V_{\text{BI}} & = V(x_n)
+			\end{align*}
+			Therefore, substituting and solving,
+			\begin{align*}
+				c_1 & = \frac{{x_p}^2}{2} \\
+				c_2 & = -\frac{2 \varepsilon \varepsilon_0 V_{\text{BI}}}{q \alpha} + \frac{2}{3} {x_n}^3
+			\end{align*}
+			Therefore,
+			\begin{align*}
+				V(x) &=
+					\begin{cases}
+						\frac{q N_A}{\varepsilon \varepsilon_0} \left( \frac{x^2}{2} + x_p x + \frac{{x_p}^2}{2} \right)                                                                        & ;\quad -x_p \le x \le 0 \\
+						-\frac{q \alpha}{\varepsilon \varepsilon_0} \left( \frac{x^3}{3} - {x_n}^2 x - \frac{2 \varepsilon \varepsilon_0 V_{\text{BI}}}{q \alpha} + \frac{2}{3} {x_n}^3 \right) & ;\quad 0 \le x \le x_n  \\
+					\end{cases}
+			\end{align*}
+	\end{enumerate}
+\end{solution}
+
+\section{Biased PN Junctions}
+
+Consider a PN step junction at equilibrium.\\
+~\\
+Let the width of the depletion region on the P-side be ${x_p}_0$, and that on the N-type side be ${x_n}_0$.\\
+Let the builtin voltage be $V_{\text{BI}}$.\\
+Let the internal electric field in the depletion region be $\mathcal{E}$.
+Therefore, $\mathcal{E}$ is directed from the N-type region to the P-type region.\\
+~\\
+Let the diode be connected to a voltage source as in \cref{fig:PN_Junction_in_Bias}.
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}
+		\def\l{2};
+		\def\h{1};
+		\def\xP{0.25};
+		\def\xN{0.5};
+
+		\begin{scope}
+			\draw (-\l,-\h/2) rectangle (0,\h/2);
+			\draw (0,-\h/2) rectangle (\l,\h/2);
+		\end{scope}
+		
+		\begin{scope}
+			\draw (\l,0) -| (2*\l,-2*\h);
+			\draw (-\l,0) -| (-2*\l,-2*\h);
+			\draw (2*\l,-2*\h) to [battery1 = $V_a$] (-2*\l,-2*\h);
+		\end{scope}
+
+		\begin{scope}
+			\node at (\l/2,0) {N};
+			\node at (-\l/2,0) {P};
+		\end{scope}
+	\end{tikzpicture}
+	\caption{PN Junction in Bias}
+	\label{fig:PN_Junction_in_Bias}
+\end{figure}
+Modelling the diode as resistors, let the resistance of the depletion region be $R_D$, that of the remaining P-type part be $R_P$, and that of the remaining N-type part be $R_N$.\\
+The resistivity in a region is
+\begin{align*}
+	\rho & = \frac{1}{q (\mu_n n + \mu_p p)}
+\end{align*}
+In the depletion region, there are very few free charge carriers, compared to the remaining P-type and N-type regions.
+Therefore,
+\begin{align*}
+	\rho_D & >> R_P \\
+	\rho_D & >> R_N
+\end{align*}
+Therefore,
+\begin{align*}
+	R_D & >> R_P \\
+	R_D & >> R_N
+\end{align*}
+Therefore, for practical purposes, it can be assumed that the entire voltage drop in on the depletion region.\\
+Therefore,
+\begin{align*}
+	E(x) & = -q V(x)
+\end{align*}
+Therefore, if $V(x)$ is increased, the energy bands shift downwards, as compared to their equilibrium positions.
+If $V(x)$ is decreased, the energy bands shift upwards, as compared to their equilibrium positions.\\
+Therefore, if the applied external voltage $V_a$ is positive, the energy bands shift upwards, and if it is negative, the energy bands shift downwards.\\
+Therefore, the difference between the energy bands at the two terminals, increases by $q V_a$.\\
+If $V_a$ is positive, the PN junction is said to be in forward bias, and if it is negative, the PN junction is said to be in reverse bias.\\
+~\\
+Therefore, due to $V_a$, there will be an electric field generated, directed in the direction of $V_a$.\\
+If $V_a > 0$, the generated electric field opposes the internal electric field.
+Therefore, the net electric field is smaller in magnitude than at equilibrium.\\
+Therefore, the width of the depletion region is smaller than that at equilibrium.\\
+~\\
+By Gauss' Law, the slope of the curve of the electric field represents the charge density.
+Therefore, as the charge density must be the same as at equilibrium, the slope of the electric field also must be the same as at equilibrium.
+\todo{Why?}
+\todo{Add breakdown of Fermi levels}
+
+\begin{question}
+	Consider a PN step junction at $300 \kelvin$.
+	Given
+	\begin{align*}
+		N_A & = 10^{16} \si{\per\centi\metre\cubed} \\
+		N_D & = 10^{16} \si{\per\centi\metre\cubed}
+	\end{align*}
+	find the width of the depletion region on each side of the junction, for
+	\begin{enumerate}
+		\item $V_a = 0$
+		\item $V_a = 0.5 \volt$
+		\item $V_a = -0.5 \volt$
+	\end{enumerate}
+\end{question}
+
+\begin{solution}
+	\begin{enumerate}[leftmargin=*]
+		\item
+			As the junction is a step junction,
+			\begin{align*}
+				W & = \sqrt{\frac{2 \varepsilon \varepsilon_0}{q} (V_{\text{BI}} + V_a) \left( \frac{N_A + N_D}{N_A N_D} \right)}
+                                  & = \sqrt{\frac{2 \varepsilon \varepsilon_0}{q} (V_{\text{BI}} + 0) \left( \frac{N_A + N_D}{N_A N_D} \right)}
+			\end{align*}
+			Therefore, substituting and solving,
+			\begin{align*}
+				W & = 0.432 \si{\micro\metre}
+			\end{align*}
+			As the junction is electrically neutral,
+			\begin{align*}
+				N_A x_p        & = N_D x_n \\
+				\therefore x_p & = x_n     \\
+                                               & = \frac{W}{2}
+			\end{align*}
+			Therefore,
+			\begin{align*}
+				x_p & = x_n \\
+                                    & = 0.216 \si{\micro\metre}
+			\end{align*}
+		\item
+			As the junction is a step junction,
+			\begin{align*}
+				W & = \sqrt{\frac{2 \varepsilon \varepsilon_0}{q} (V_{\text{BI}} + V_a) \left( \frac{N_A + N_D}{N_A N_D} \right)}
+                                  & = \sqrt{\frac{2 \varepsilon \varepsilon_0}{q} (V_{\text{BI}} + 0.5 \volt) \left( \frac{N_A + N_D}{N_A N_D} \right)}
+			\end{align*}
+			Therefore, substituting and solving,
+			\begin{align*}
+				W & = 0.238 \si{\micro\metre}
+			\end{align*}
+			As the junction is electrically neutral,
+			\begin{align*}
+				N_A x_p        & = N_D x_n \\
+				\therefore x_p & = x_n     \\
+                                               & = \frac{W}{2}
+			\end{align*}
+			Therefore,
+			\begin{align*}
+				x_p & = x_n \\
+                                    & = 0.119 \si{\micro\metre}
+			\end{align*}
+		\item
+			As the junction is a step junction,
+			\begin{align*}
+				W & = \sqrt{\frac{2 \varepsilon \varepsilon_0}{q} (V_{\text{BI}} + V_a) \left( \frac{N_A + N_D}{N_A N_D} \right)}
+                                  & = \sqrt{\frac{2 \varepsilon \varepsilon_0}{q} (V_{\text{BI}} - 0.5 \volt) \left( \frac{N_A + N_D}{N_A N_D} \right)}
+			\end{align*}
+			Therefore, substituting and solving,
+			\begin{align*}
+				W & = 0.563 \si{\micro\metre}
+			\end{align*}
+			As the junction is electrically neutral,
+			\begin{align*}
+				N_A x_p        & = N_D x_n \\
+				\therefore x_p & = x_n     \\
+                                               & = \frac{W}{2}
+			\end{align*}
+			Therefore,
+			\begin{align*}
+				x_p & = x_n \\
+                                    & = 0.281.5 \si{\micro\metre}
+			\end{align*}
+	\end{enumerate}
+\end{solution}
+
 \end{document}
