@@ -1,0 +1,293 @@
+\documentclass[fleqn, a4paper, 11pt, oneside]{amsart}
+\usepackage{exsheets}
+\usepackage{amsmath, amssymb, amsthm} %standard AMS packages
+\usepackage{marginnote} %marginnotes
+\usepackage{gensymb} %miscellaneous symbols
+\usepackage{commath} %differential symbols
+\usepackage{xcolor} %colours
+\usepackage{cancel} %cancelling terms
+\usepackage[free-standing-units, space-before-unit]{siunitx} %formatting units
+\usepackage{tikz, pgfplots} %diagrams
+	\usetikzlibrary{calc, hobby, patterns, intersections, decorations.markings}
+\usepackage{graphicx} %inserting graphics
+\usepackage{hyperref} %hyperlinks
+\usepackage{datetime} %date and time
+\usepackage{enumerate,enumitem} %numbered lists
+\usepackage{float} %inserting floats
+\usepackage{circuitikz}[american voltages, american currents] %circuit diagrams
+\usepackage{booktabs}
+\usepackage{csvsimple}
+\usepackage{todonotes}
+
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} %adds numbers to specific equations in non-numbered list of equations
+
+\theoremstyle{definition}
+\newtheorem{example}{Example}
+\newtheorem{definition}{Definition}
+
+\theoremstyle{theorem}
+\newtheorem{theorem}{Theorem}
+
+\makeatletter
+\@addtoreset{section}{part} %resets section numbers in new part
+\makeatother
+
+\SetupExSheets{solution/print = true}
+
+%opening
+\title
+[
+	Electronic Devices : Assignment 2
+]
+{
+	Electronic Devices\\
+	Assignment 2
+}
+\author
+{
+	Aakash Jog\\
+	ID : 989323563
+}
+\date{\formatdate{17}{3}{2016}}
+
+\begin{document}
+
+\maketitle
+%\setlength{\mathindent}{0pt}
+
+\begin{question}
+	Consider a silicon PN step junction at equilibrium with
+	\begin{align*}
+		N_A & = 10^{18} \si{\per\centi\metre\cubed} \\
+		N_D & = 10^{17} \si{\per\centi\metre\cubed}
+	\end{align*}
+	maintained at $300 \kelvin$.
+	\begin{enumerate}
+		\item
+			Calculate the builtin potential, $V_{\text{BI}}$, and the depletion layer width $W$.
+		\item
+			Sketch the following as functions of position $x$ across the device.
+			\begin{enumerate}
+				\item Energy band diagram
+				\item Charge density
+				\item Electric field
+				\item Potential
+			\end{enumerate}
+			Be sure to include units, and also to indicate on the energy band diagram all relevant energy levels.
+	\end{enumerate}
+\end{question}
+
+\begin{solution}
+	\begin{enumerate}[leftmargin=*]
+		\item
+			The builtin voltage is
+			\begin{align*}
+				V_{\text{BI}} & = \frac{k T}{q} \ln\left( \frac{N_A N_D}{{n_i}^2} \right)                                      \\
+                                              & = \left( 2585.1 \times 10^{-5} \volt \right) \ln\left( \frac{10^{18} 10^{17}}{10^{20}} \right) \\
+                                              & = \left( 2585.1 \times 10^{-5} \volt \right) \ln\left( 10^{15} \right)                         \\
+                                              & = \left( 2585.1 \times 10^{-5} \volt \right) (34.539)                                          \\
+                                              & = 89286.768 \times 10^{-5} \volt                                                               \\
+                                              & = 0.89286768 \volt
+			\end{align*}
+			Therefore,
+			\begin{align*}
+				W & = \sqrt{\frac{2 \varepsilon \varepsilon_0 V_{\text{BI}}}{q} \left( \frac{N_A + N_D}{N_A N_D} \right)}                                                                                                                         \\
+                                  & = \sqrt{\frac{(2) (11.8) \left( 8.85 \times 10^{-14} \si{\farad\per\centi\metre} \right) (0.893 \volt)}{1.6 \times 10^{-19} \coulomb} \left( \frac{10^{18} + 10^{17}}{10^{18} \cdot 10^{17}} \si{\centi\metre\cubed} \right)} \\
+                                  & = \sqrt{\left( 116.5699875 \times 10^{5} \right) \left( \frac{11 \times 10^{17}}{10^{35}} \right)} \si{\centi\metre}                                                                                                          \\
+                                  & = \sqrt{1282.2698625 \times 10^{-13}} \si{\centi\metre}                                                                                                                                                                       \\
+                                  & = \sqrt{128.22698625} \times 10^{-6} \si{\centi\metre}                                                                                                                                                                        \\
+                                  & = 1.132373553 \times 10^{-6} \si{\centi\metre}                                                                                                                                                                                \\
+                                  & = 11.32373553 \si{\nano\metre}
+			\end{align*}
+		\item
+			\begin{enumerate}
+				\item
+					~\\
+					\begin{figure}[H]
+						\begin{tikzpicture}[scale = 1.5]
+							\def\eConductionP{3};
+							\def\eConductionN{2};
+							\def\eIntrinsicP{2};
+							\def\eIntrinsicN{1};
+							\def\eValenceP{1};
+							\def\eValenceN{0};
+							\def\eFermi{1.5};
+							\def\l{3};
+							\def\W{1};
+			
+							\begin{scope}
+								\draw (-\l,\eConductionP) node [left] {$E_C$} -- (-\W/2,\eConductionP);
+								\draw [dashed] (-\l,\eIntrinsicP) node [left] {$E_i$} -- (-\W/2,\eIntrinsicP);
+								\draw (-\l,\eValenceP) node [left] {$E_V$} -- (-\W/2,\eValenceP);
+							\end{scope}
+			
+							\begin{scope}
+								\draw (-\W/2,\eConductionP) to [out = 0, in = 180] (\W/2,\eConductionN);
+								\draw [dashed] (-\W/2,\eIntrinsicP) to [out = 0, in = 180] (\W/2,\eIntrinsicN);
+								\draw (-\W/2,\eValenceP) to [out = 0, in = 180] (\W/2,\eValenceN);
+							\end{scope}
+			
+							\begin{scope}
+								\draw (\W/2,\eConductionN) -- (\l,\eConductionN) node [right] {$E_C$};
+								\draw [dashed] (\W/2,\eIntrinsicN) -- (\l,\eIntrinsicN) node [right] {$E_i$};
+								\draw (\W/2,\eValenceN) -- (\l,\eValenceN) node [right] {$E_V$};
+							\end{scope}
+			
+							\begin{scope}
+								\draw (-\l,\eFermi) node [left] {$E_F$} -- (\l,\eFermi) node [right] {$E_F$};
+							\end{scope}
+			
+							\begin{scope}[dashed]
+								\draw (-\W/2,\eConductionP + 1) -- (-\W/2,\eValenceN - 1);
+								\draw (\W/2,\eConductionP + 1) -- (\W/2,\eValenceN - 1);
+								\node [above] at (-\l/2 - \W/4,\eConductionP + 1) {P-type};
+								\node [above] at (\l/2 + \W/4,\eConductionP + 1) {N-type};
+								\node [above] at (0,\eConductionP + 1) {depletion region};
+							\end{scope}
+						\end{tikzpicture}
+					\end{figure}
+				\item
+					~\\
+					\begin{figure}[H]
+						\centering
+						\begin{tikzpicture}
+							\def\xMIN{-4};
+							\def\xMAX{4};
+							\def\yMIN{-2};
+							\def\yMAX{2};
+							\def\xN{2};
+							\def\xP{0.2};
+							\def\qNA{1};
+							\def\qND{0.1};
+			
+							\begin{scope}[stealth-stealth]
+								\draw (\xMIN,0) -- (\xMAX,0) node [right] {$x$};
+								\draw (0,\yMIN) -- (0,\yMAX) node [above] {$\rho(x)$};
+							\end{scope}
+			
+							\begin{scope}
+								\draw (0,\qND) -- (\xN,\qND);
+								\draw (-\xP,-\qNA) -- (0,-\qNA);
+							\end{scope}
+			
+							\begin{scope}
+								\filldraw (0,-\qNA) circle(1pt) node [right] {$q N_A$};
+								\filldraw (0,\qND) circle (1pt) node [above left] {$q N_D$};
+								\filldraw (\xN,0)  circle (1pt) node [below] {$x_n$};
+								\filldraw (-\xP,0) circle (1pt) node [below left] {$-x_p$};
+							\end{scope}
+						\end{tikzpicture}
+					\end{figure}
+				\item
+					~\\
+					\begin{figure}[H]
+						\centering
+						\begin{tikzpicture}
+							\def\xMIN{-4};
+							\def\xMAX{4};
+							\def\yMIN{-2};
+							\def\yMAX{2};
+							\def\xN{2};
+							\def\xP{0.2};
+							\def\EMAX{1};
+			
+							\begin{scope}[stealth-stealth]
+								\draw (\xMIN,0) -- (\xMAX,0) node [right] {$x$};
+								\draw (0,\yMIN) -- (0,\yMAX) node [above] {$\rho(x)$};
+							\end{scope}
+			
+							\begin{scope}
+								\draw (-\xP,0) -- (0,-\EMAX);
+								\draw (0,-\EMAX) -- (\xN,0);
+							\end{scope}
+			
+							\begin{scope}
+								\filldraw (0,-\EMAX) circle(1pt) node [right] {$\mathcal{E}_{\text{max}}$};
+								\filldraw (\xN,0)  circle (1pt) node [below] {$x_n$};
+								\filldraw (-\xP,0) circle (1pt) node [below left] {$-x_p$};
+							\end{scope}
+						\end{tikzpicture}
+					\end{figure}
+				\item
+					~\\
+					\begin{figure}[H]
+						\centering
+						\begin{tikzpicture}
+							\def\xMIN{-4};
+							\def\xMAX{4};
+							\def\yMIN{-2};
+							\def\yMAX{2};
+							\def\xN{2};
+							\def\xP{0.2};
+							\def\VBI{2};
+		
+							\begin{scope}[stealth-stealth]
+								\draw (\xMIN,0) -- (\xMAX,0) node [right] {$x$};
+								\draw (0,\yMIN) -- (0,\yMAX) node [above] {$V(x)$};
+							\end{scope}
+		
+							\begin{scope}
+								\draw (-\xP,0) to [out = 0, in = 180] (\xN,\VBI);
+							\end{scope}
+		
+							\begin{scope}
+								\filldraw (0,\VBI) circle(1pt) node [left] {$V_{\text{BI}}$};
+								\filldraw (\xN,0)  circle (1pt) node [above] {$x_n$};
+								\filldraw (-\xP,0) circle (1pt) node [above] {$-x_p$};
+							\end{scope}
+						\end{tikzpicture}
+					\end{figure}
+			\end{enumerate}
+	\end{enumerate}
+\end{solution}
+
+\begin{question}
+	Consider a one-sided silicon PN junction at equilibrium and room temperature, with electric field profile as shown.
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+			\def\xMIN{-3};
+			\def\xMAX{3};
+			\def\yMIN{-3};
+			\def\yMAX{3};
+
+			\begin{scope}[stealth-stealth]
+				\draw (\xMIN,0) -- (\xMAX,0) node [right] {$x$};
+				\draw (0,\yMIN) -- (0,\yMAX) node [above] {$E(x)$};
+			\end{scope}
+			
+			\begin{scope}
+				\draw (-1,0) -- (0,2);
+			\end{scope}
+
+			\begin{scope}
+				\filldraw (-1,0) circle (1pt) node [below] {$-7 \si{\micro\metre}$};
+				\filldraw (0,2) circle (1pt) node [right] {$2 \times 10^3 \si{\volt\per\centi\metre}$};
+			\end{scope}
+		\end{tikzpicture}
+	\end{figure}
+	\begin{enumerate}
+		\item
+			What is the doping on the left side of the junction?
+			Is it P-type or N-type?
+		\item
+			What is the doping on the right side of the junction?
+			Is it P-type or N-type?
+	\end{enumerate}
+\end{question}
+
+\begin{solution}
+	\begin{enumerate}[leftmargin=*]
+		\item
+			As the field is zero at $-7 \si{\micro\metre}$, and as the field is positive between $0$ and $-7 \si{\micro\metre}$, the doping on the left side of the junction is N-type.
+			\begin{align*}
+				\mathcal{E}_{max}          & = \frac{q N_D x_n}{\varepsilon \varepsilon_0}                                                                                 \\
+				\therefore 2 \times 10^{3} & = \frac{\left( 1.6 \times 10^{-19} \right) (N_D) \left( 7 \times 10^{-4} \right)}{(11.8) \left( 8.85 \times 10^{-14} \right)} \\
+				\therefore N_D             & = 1.8648 \times 10^{13} \si{\per\centi\metre\cubed}
+			\end{align*}
+		\item
+			The right side is P-type, with doping much greater than that on the left side.
+	\end{enumerate}
+\end{solution}
+
+\end{document}
