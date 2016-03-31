@@ -1661,4 +1661,188 @@ Therefore, as the charge density must be the same as at equilibrium, the slope o
 	\end{enumerate}
 \end{solution}
 
+\section{Currents in PN Junctions}
+
+At equilibrium, the concentration of electrons is higher in the N-type region is higher than that in the P-type region.
+Therefore, they tend to diffuse from the N-type region to the P-type region.
+However, as there is an energy barrier in the depletion region, only the electrons with $E > E_C$ can diffuse and cross over.
+Therefore, an electron diffusion current is generated.\\
+Similarly, the holes with $E < E_V$ diffuse from the P-type region to the N-type region, and a hole diffusion current is generated.\\
+When the electrons and holes diffuse and cross over into the other region, they leave behind fixed charges.
+This results in an internal electric field being generated in the depletion region.\\
+Due to the internal electric field, electrons in the conduction band of the P-type region drift from the P-type region to the N-type region.
+Therefore, an electron drift current is generated.\\
+Similarly, the holes in the valence band of the N-type region drift from the N-type region to the P-type region, and a hole drift current is generated.\\
+As the junction is at equilibrium,
+\begin{align*}
+	J_{\text{total}} &= 0
+\end{align*}
+Therefore,
+\begin{align*}
+	J_{\text{diffusion}_p} + J_{\text{drift}_p} &= 0\\
+	J_{\text{diffusion}_n} + J_{\text{drift}_n} &= 0
+\end{align*}
+The magnitude of the diffusion current is determined by the height of the energy barrier.\\
+The magnitude of the drift current is determined by the magnitude of the internal electric field and the concentration of minority carriers only.
+Therefore, the height of the energy barrier does not affect the magnitude of the drift current.\\
+Therefore, if the height of the energy barrier is lowered, the magnitude of the diffusion currents increases, but that of the drift currents does not.\\
+~\\
+The electron and hole diffusion currents are directed from the P-type region to the N-type region, and the electron and hole drift currents are directed from the N-type region to the P-type region.
+In equilibrium, the two are equal in magnitude and opposite in direction.
+Therefore, there is no net current.\\
+If the junction is in forward bias, the height of the energy barrier is less than that at equilibrium.
+Therefore, the magnitude of the diffusion current is more than that of the drift current.
+Therefore, the net current is directed from the P-type side to the N-type side.\\
+Similarly, if the junction is in reverse bias, the height of the energy barrier is greater than that in equilibrium, and hence, the net current is directed from the N-type side to the P-type side.
+
+\section{Carrier Profiles}
+
+Let the hole concentration in the P-type region be $p_P$.\\
+Let the electron concentration in the N-type region be $n_N$.\\
+Let the electron concentration in the P-type region be ${n_P}_0$.\\
+Let the electron concentration at the interface of the P-type region and the depletion region be $n_N$.
+Let the hole concentration in the P-type region be ${p_N}_0$.\\
+Let the electron concentration at the interface of the N-type region and the depletion region be $p_N$.\\
+
+\begin{align*}
+	V_{\text{BI}} &= \frac{k T}{q} \ln\left( \frac{N_D(x_n) N_A(-x_p)}{{n_i}^2} \right)\\
+	&= \frac{k T}{q} \ln\left( \frac{n_N p_P}{{n_i}^2} \right)
+\end{align*}
+If the junction is in equilibrium,
+\begin{align*}
+	n_P &= \frac{{n_i}^2}{p_P}\\
+	&= n_N e^{-\frac{q V_{\text{BI}}}{k T}}\\
+	&= {n_P}_0\\
+	p_N &= \frac{{n_i}^2}{n_N}\\
+	&= p_P e^{-\frac{q V_{\text{BI}}}{k T}}\\
+	&= {p_N}_0
+\end{align*}
+If the junction is in bias,
+\begin{align*}
+	n_P &= n_N e^{-\frac{q (V_{\text{BI}} - V_a)}{k T}}\\
+	&= {n_P}_0 e^{\frac{q V_a}{k T}}\\
+	p_N &= p_P e^{-\frac{q (V_{\text{BI}} - V_a)}{k T}}\\
+	&= {p_N}_0 e^{\frac{q V_a}{k T}}
+\end{align*}
+In general, if the junction is in forward bias, the curves of the minority carriers bend upwards in the form of an exponential, and in reverse bias, the curves bend downwards in the form of an exponential.
+
+\begin{question}
+	Consider a silicon sample with
+	\begin{align*}
+		N_D &= 10^{16} \si{\per\centi\metre\cubed}\\
+		\tau_n &= 1 \si{\micro\second}\\
+		\tau_p &= 1 \si{\micro\second}\\
+		D_n &= 40 \si{\centi\metre\squared\per\second}\\
+		D_p &= 25 \si{\centi\metre\squared\per\second}
+	\end{align*}
+	is maintained at steady state at $300 \kelvin$.
+	The hole concentration at the left end is $10^{14} \si{\per\centi\metre\cubed}$.
+	What is $p(x)$ at steady state?
+\end{question}<++>
+
+\begin{solution}
+	Let the left end of the sample correspond to $x = 0$.\\
+	Therefore,
+	\begin{align*}
+		\dpd{\hat{p}}{t} &= -\frac{1}{q} \dpd{J_p}{x} - \frac{\hat{p}}{\tau_p} + G_{\text{optical}}\\
+		J_p &= q \mu_p p \mathcal{E} - q D_p \dod{p}{x}
+	\end{align*}
+	As $\mathcal{E} = 0$,
+	\begin{align*}
+		J_p &= -q D_p \dod{p}{x}\\
+		&= -q D_p \dod{\hat{p}}{x}
+	\end{align*}
+	As the sample is in steady state,
+	\begin{align*}
+		\dpd{\hat{p}}{t} &= 0
+	\end{align*}
+	As the sample is illuminated at the end only,
+	\begin{align*}
+		G_{\text{optical}} &= 0
+	\end{align*}
+	Therefore, substituting,
+	\begin{align*}
+		0 &= D_p \dod[2]{\hat{p}}{x} - \frac{\hat{p}}{\tau_p}\\
+		\therefore \dod[2]{\hat{p}}{x} &= \frac{1}{D_p \tau_p}\\
+		\therefore \dod[2]{\hat{p}}{x} &= \frac{1}{{L_p}^2}\\
+	\end{align*}
+	Therefore,
+	\begin{align*}
+		\hat{p}(x) &= c_1 e^{\frac{x}{L_p}} + c_2 e^{-\frac{x}{L_p}}
+	\end{align*}
+	Substituting the initial conditions,
+	\begin{align*}
+		c_1 &= 0\\
+		c_2 &= 10^{14}
+	\end{align*}
+	Therefore,
+	\begin{align*}
+		\hat{p}(x) &= 10^{14} e^{-\frac{x}{L_p}}
+	\end{align*}
+\end{solution}
+
+\begin{question}
+	Consider a silicon PN step junction at $300 \kelvin$.
+	The steady state distribution is as shown.
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}[yscale = 0.5]
+			\def\xMIN{-5};
+			\def\xMAX{5};
+			\def\yMIN{-1};
+			\def\yMAX{16};
+
+			\def\xP{1};
+			\def\xN{1};
+
+			\begin{scope}[stealth-stealth]
+				\draw (\xMIN,0) -- (\xMAX,0) node [right] {$x$};
+				\filldraw (-\xP,0) circle (1pt) node [below] {$-x_p$};
+				\filldraw (\xN,0) circle (1pt) node [below] {$x_n$};
+			\end{scope}
+
+			\begin{scope}
+				\draw (\xMIN,14) node [left] {$10^{14}$} -- (-\xP,14);
+				\draw (\xMIN,6) node [left] {$10^6$} to [out = 0, in = 100] (-\xP,3) node [right] {$10^3$};
+			\end{scope}
+
+			\begin{scope}
+				\draw (\xMAX,15) node [right] {$10^{15}$} -- (\xN,15);
+				\draw (\xMAX,5) node [right] {$10^5$} to [out = 180, in = 80] (\xN,2) node [right] {$10^3$};
+			\end{scope}
+		\end{tikzpicture}
+	\end{figure}
+	\begin{enumerate}
+		\item Is the junction in forward bias or reverse bias?
+		\item Find $V_a$.
+	\end{enumerate}
+\end{question}
+
+\begin{solution}
+	\begin{enumerate}[leftmargin=*]
+		\item
+			\begin{align*}
+				n_P &= {n_P}_0 e^{\frac{q V_a}{k T}}\\
+				\therefore 10^{3} &= 10^{6} e^{\frac{q V_a}{k T}}
+			\end{align*}
+			Therefore,
+			\begin{align*}
+				e^{\frac{q V_a}{k T}} &< 1\\
+				\therefore V_a &< 0
+			\end{align*}
+			Therefore, the junction is in reverse bias.
+		\item
+			\begin{align*}
+				e_{\frac{q V_a}{k T}} &= \frac{n_P}{{n_P}_0}\\
+				&= \frac{p_N}{{p_N}_0}\\
+				&= 10^{-3}
+			\end{align*}
+			Therefore,
+			\begin{align*}
+				V_a &= \frac{k T}{q} \ln\left( 10^{-3} \right)\\
+				&= -0.18 \volt
+			\end{align*}
+	\end{enumerate}
+\end{solution}
+
 \end{document}
