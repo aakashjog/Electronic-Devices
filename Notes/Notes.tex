@@ -1427,8 +1427,8 @@ Therefore,
 		\item Relation between $x_n$ and $x_p$
 		\item Electric field
 		\item Electrostatic potential
-	\end{enumerate}<++>
-\end{question}<++>
+	\end{enumerate}
+\end{question}
 
 \begin{solution}
 	\begin{enumerate}[leftmargin=*]
@@ -1724,7 +1724,75 @@ If the junction is in bias,
 	p_N &= p_P e^{-\frac{q (V_{\text{BI}} - V_a)}{k T}}\\
 	&= {p_N}_0 e^{\frac{q V_a}{k T}}
 \end{align*}
-In general, if the junction is in forward bias, the curves of the minority carriers bend upwards in the form of an exponential, and in reverse bias, the curves bend downwards in the form of an exponential.
+In general, if the junction is in forward bias, the curves of the minority carriers bend upwards in the form of an exponential, and in reverse bias, the curves bend downwards in the form of an exponential.\\
+The P-type and N-type regions can be considered as semiconductors illuminated from one end only.
+Therefore, setting up the $x$-axes for each of the region such that origin is at the interface of the respective region and the depletion region, with the positive direction directed outwards,
+\begin{align*}
+	n_P &= {n_P}_0 e^{\frac{q V_a}{k T}}\\
+	&= {n_P}_0 + \hat{n}(x = 0)\\
+	p_N &= {p_N}_0 e^{\frac{q V_a}{k T}}\\
+	&= {p_N}_0 + \hat{p}(x = 0)
+\end{align*}
+Also,
+\begin{align*}
+	\hat{n}(x = 0) &= {n_P}_0 \left( e^{\frac{q V_a}{k T}} - 1 \right)\\
+	\hat{p}(x = 0) &= {p_N}_0 \left( e^{\frac{q V_a}{k T}} - 1 \right)
+\end{align*}
+Therefore,
+\begin{align*}
+	\hat{n}(x) &= {n_P}_0 \left( e^{\frac{q V_a}{k T}} - 1 \right) e^{-\frac{x}{L_n}}\\
+	\hat{p}(x) &= {p_N}_0 \left( e^{\frac{q V_a}{k T}} - 1 \right) e^{-\frac{x}{L_p}}
+\end{align*}
+Therefore,
+\begin{align*}
+	J_{\text{diffusion}_n} &= q D_n \dod{n}{x}\\
+	&= q D_n \dod{\hat{n}}{x}\\
+	&= -q \frac{D_n}{L_n} {n_P}_0 \left( e^{\frac{q V_a}{k T}} - 1 \right) e^{-\frac{x}{L_n}}\\
+	J_{\text{diffusion}_p} &= q D_p \dod{p}{x}\\
+	&= q D_p \dod{\hat{p}}{x}\\
+	&= -q \frac{D_p}{L_p} {p_N}_0 \left( e^{\frac{q V_a}{k T}} - 1 \right) e^{-\frac{x}{L_p}}
+\end{align*}
+The continuity equation for electrons in the depletion region is
+\begin{align*}
+	\dpd{\hat{n}}{t} &= \frac{1}{q} \dpd{J_n}{x} - \frac{\hat{n}}{\tau_n} + G
+\end{align*}
+Assuming that no generation or recombination of EHPs occurs in the depletion region,
+\begin{align*}
+	G &= 0\\
+	\tau_n &= 0
+\end{align*}
+As the junction is in steady state,
+\begin{align*}
+	\dpd{\hat{n}}{t} &= 0
+\end{align*}
+Therefore,
+\begin{align*}
+	\frac{1}{q} \dpd{J_n}{x} &= 0
+\end{align*}
+Similarly,
+\begin{align*}
+	\frac{1}{q} \dpd{J_p}{x} &= 0
+\end{align*}
+Therefore as $J_n$ and $J_p$ are constant in the depletion region,
+\begin{align*}
+	J_n(-x_p < x < x_n) &= J_n(x = -x_p)\\
+	J_p(-x_p < x < x_n) &= J_p(x = x_n)
+\end{align*}
+Therefore,
+\begin{align*}
+	J_{\text{total}} &= J_{\text{diffusion}_n}(x = 0) + J_{\text{diffusion}_p}(x = 0)\\
+	&= q \left( \frac{D_n}{L_n} {n_P}_0 + \frac{D_p}{L_p} {p_N}_0 \right) \left( e^{\frac{q V_a}{k T}} - 1 \right)
+\end{align*}
+where each $x = 0$ corresponds to the respective $x$-axis.\\
+Let
+\begin{align*}
+	J_0 &= q \left( \frac{D_n}{L_n} {n_P}_0 + \frac{D_p}{L_p} {p_N}_0 \right)
+\end{align*}
+Therefore,
+\begin{align*}
+	J_{\text{total}} &= J_0 \left( e^{\frac{q V_a}{k T}} - 1 \right)
+\end{align*}
+As the total current in the junction must be constant, the majority and minority currents in each of the regions must add up to $J_{\text{total}}$.
 
 \begin{question}
 	Consider a silicon sample with
@@ -1738,7 +1806,7 @@ In general, if the junction is in forward bias, the curves of the minority carri
 	is maintained at steady state at $300 \kelvin$.
 	The hole concentration at the left end is $10^{14} \si{\per\centi\metre\cubed}$.
 	What is $p(x)$ at steady state?
-\end{question}<++>
+\end{question}
 
 \begin{solution}
 	Let the left end of the sample correspond to $x = 0$.\\
@@ -1843,6 +1911,112 @@ In general, if the junction is in forward bias, the curves of the minority carri
 				&= -0.18 \volt
 			\end{align*}
 	\end{enumerate}
+\end{solution}
+
+\begin{question}
+	Consider a silicon PN step junction at $300 \kelvin$ such that
+	\begin{align*}
+		N_A &= 3 \times 10^{16} \si{\per\centi\metre\cubed}\\
+		N_D &= 2 \times 10^{15} \si{\per\centi\metre\cubed}\\
+		D_n &= 50 \si{\centi\metre\squared\per\second}\\
+		D_n &= 10 \si{\centi\metre\squared\per\second}\\
+		\tau_n &= \tau_p
+	\end{align*}
+	Given that
+	\begin{align*}
+		n_P &= 10^{15}\\
+		{n_P}_0(3 \si{\micro\metre}) &= 3.7 \times 10^{14}
+	\end{align*}
+	\begin{enumerate}
+		\item Find the minority current density at $x > 0$.
+		\item Find the applied voltage.
+		\item Find $J_{\text{total}}$ for $V_a = 0.6 \volt$.
+	\end{enumerate}
+\end{question}
+
+\begin{solution}
+	\begin{enumerate}[leftmargin=*]
+		\item
+			\begin{align*}
+				\hat{n}(x) &= \hat{n}(x = 0) e^{-\frac{x}{L_n}}\\
+				\therefore L_n &= 3 \si{\micro\metre}
+			\end{align*}
+			Therefore,
+			\begin{align*}
+				J_{\text{diffusion}_n}(x = 0) &= -q \frac{D_n}{L_n} {n_P}_0 \left( e^{\frac{q V_a}{k T}} - 1 \right)\\
+				&= -\left( 1.6 \times 10^{-19} \right) \left( \frac{50}{3 \times 10^{-4}} \right) \left( 10^{15} \right)\\
+				&= -26.67 \si{\ampere\per\centi\metre\squared}
+			\end{align*}
+		\item
+			\begin{align*}
+				\hat{n}(x = 0) &= {n_P}_0 \left( e^{\frac{q V_a}{k T}} - 1 \right)
+			\end{align*}
+			As the minority carrier concentration at the interface of the depletion region is greater than that inside the region, the function is in forward bias.
+			Therefore,
+			\begin{align*}
+				\hat{n}(x = 0) &= {n_P}_0 e^{\frac{q V_a}{k T}}
+			\end{align*}
+			Therefore,
+			\begin{align*}
+				V_a &= \frac{k T}{q} \ln\left( \frac{\hat{n}(x = 0)}{{n_P}_0} \right)\\
+				&= 0.026 \ln\left( \frac{N_A \hat{n}(x = 0)}{{n_i}^2} \right)\\
+				&= 0.026 \ln \left( \frac{3 \times 10^{16} 10^{15}}{10^{20}} \right)\\
+				&= 0.687 \volt
+			\end{align*}
+		\item
+			\begin{align*}
+				J_{\text{total}} &= q \left( \frac{D_p}{L_p} {p_N}_0 + \frac{D_n}{L_n} {n_P}_0 \right) \left( e^{\frac{q V_a}{k T}} - 1 \right)
+			\end{align*}
+			As the junction is in forward bias,
+			\begin{align*}
+				J_{\text{total}} &= q \left( \frac{D_p}{L_p} {p_N}_0 + \frac{D_n}{L_n} {n_P}_0 \right) \left( e^{\frac{q V_a}{k T}} \right)
+			\end{align*}
+			Also,
+			\begin{align*}
+				L_p = \sqrt{\tau_p D_p}\\
+				&= \sqrt{\tau_p D_p} \frac{\sqrt{D_p}}{\sqrt{D_p}}\\
+				&= \sqrt{\tau_p D_n} \sqrt{\frac{D_p}{D_n}}\\
+				&= \sqrt{\tau_n D_n} \sqrt{\frac{D_p}{D_n}}\\
+				&= L_n \sqrt{\frac{D_p}{D_n}}
+			\end{align*}
+			Therefore, as $L_n = 3 \si{\micro\metre}$,
+			\begin{align*}
+				L_p &= 3 \sqrt{\frac{10}{50}}\\
+				&= 1.34 \times 10^{-4} \si{\centi\metre}
+			\end{align*}
+			Therefore, solving,
+			\begin{align*}
+				J_{\text{total}} &= \left( \left( \frac{10}{1.34 \times 10^{-4}} \right) \left( \frac{10^{20}}{2 \times 10^{15}} \right) + \left( \frac{50}{3 \times 10^{-4}} \right) \left( \frac{10^{20}}{3 \times 10^{16}} \right) \right) e^{\frac{0.6}{0.026}}\\
+				&= 7.12 \si{\ampere\per\centi\metre\squared}
+			\end{align*}
+	\end{enumerate}
+\end{solution}
+
+\begin{question}
+	Consider a silicon PN step junction such that
+	\begin{align*}
+		\tau_n &= 0.1 \si{\micro\second}\\
+		\tau_p &= 0.1 \si{\micro\second}\\
+		D_n &= 25 \si{\centi\metre\squared\per\second}\\
+		D_p &= 10 \si{\centi\metre\squared\per\second}
+	\end{align*}
+	Find the ratio of the doping such that $95\%$ of the current in the depletion region is due to electrons.
+\end{question}
+
+\begin{solution}
+	\begin{align*}
+		J_{\text{total}} &= q \left( \frac{D_p}{L_p} {p_N}_0 + \frac{D_n}{L_n} {n_P}_0 \right) \left( e^{\frac{q V_a}{k T}} - 1 \right)
+	\end{align*}
+	Therefore, the contribution of the electrons corresponds to $\frac{D_n}{L_n} {n_P}_0$ and that of the holes corresponds to $\frac{D_p}{L_p} {p_N}_0$.
+	Therefore, for the required ratio,
+	\begin{align*}
+		0.95 &= \frac{\frac{D_n}{L_n} {n_P}_0}{\frac{D_n}{L_n} {n_P}_0 \frac{D_p}{L_p} {p_N}_0}\\
+		\therefore \frac{D_n}{L_n} {n_P}_0 &= 19 \frac{D_p}{L_p} {p_N}_0\\
+		\therefore \frac{D_n}{L_n} {{n_i}^2}{N_A} &= 19 \frac{D_p}{L_p} \frac{{n_i}^2}{N_D}\\
+		\therefore \frac{N_A}{N_D} &= \frac{D_n}{L_n} \frac{L_p}{D_p} \frac{1}{19}\\
+		&= \frac{D_n}{\sqrt{D_n \tau_n}} \frac{\sqrt{D_p \tau_p}}{D_p} \frac{1}{19}\\
+		&= 0.083
+	\end{align*}
 \end{solution}
 
 \end{document}
