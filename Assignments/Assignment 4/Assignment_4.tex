@@ -1,0 +1,219 @@
+\documentclass[fleqn, a4paper, 10pt, oneside]{amsart}
+\usepackage{exsheets}
+\usepackage{amsmath, amssymb, amsthm} %standard AMS packages
+\usepackage{marginnote} %marginnotes
+\usepackage{gensymb} %miscellaneous symbols
+\usepackage{commath} %differential symbols
+\usepackage{xcolor} %colours
+\usepackage{cancel} %cancelling terms
+\usepackage[free-standing-units, space-before-unit]{siunitx} %formatting units
+\usepackage{tikz, pgfplots} %diagrams
+	\usetikzlibrary{calc, hobby, patterns, intersections, decorations.markings}
+\usepackage{graphicx} %inserting graphics
+\usepackage{hyperref} %hyperlinks
+\usepackage{datetime} %date and time
+\usepackage{enumerate,enumitem} %numbered lists
+\usepackage{float} %inserting floats
+\usepackage{circuitikz}[american voltages, american currents] %circuit diagrams
+\usepackage{booktabs}
+\usepackage{csvsimple}
+\usepackage{todonotes}
+
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} %adds numbers to specific equations in non-numbered list of equations
+
+\theoremstyle{definition}
+\newtheorem{example}{Example}
+\newtheorem{definition}{Definition}
+
+\theoremstyle{theorem}
+\newtheorem{theorem}{Theorem}
+
+\makeatletter
+\@addtoreset{section}{part} %resets section numbers in new part
+\makeatother
+
+\SetupExSheets{solution/print = true}
+
+%opening
+\title
+[
+	Electronic Devices : Assignment 4
+]
+{
+	Electronic Devices\\
+	Assignment 4
+}
+\author
+{
+	Aakash Jog\\
+	ID : 989323563
+}
+\date{\formatdate{12}{4}{2016}}
+
+\begin{document}
+
+\maketitle
+%\setlength{\mathindent}{0pt}
+
+\begin{question}
+	Consider a NP junction at room temperature, with voltage $V$ applied across the junction such that
+	\begin{align*}
+		\mu_n &= 1000 \si{\centi\metre\squared\per\volt\per\second}\\
+		\mu_p &= 100 \si{\centi\metre\squared\per\volt\per\second}\\
+		L_n &= 10^{-4} \si{\centi\metre}\\
+		L_p &= 10^{-4} \si{\centi\metre}
+	\end{align*}
+	Assume that both the $N$ and $P$ regions are long and the depletion region is long.
+	The figure below shows the equilibrium carrier densities with respect to the position $x$ for the NP junction in equilibrium.
+	\begin{enumerate}
+		\item
+			Is this NP junction made of silicon?
+			If it is not silicon, is it made of a material with higher or lower energy band gap than silicon?
+		\item
+			Redraw the equilibrium carrier densities for the NP junction, but implementing the depletion approximation.
+		\item
+			For a forward bias of $V_a = 0.2 \volt$, what is the electron concentration at the edge of the depletion region on the P-type side?
+		\item
+			For a forward bias of $V_a = 0.2 \volt$, what is the electron current density at the edge of the depletion region on the P-type side?
+		\item
+			For a forward bias of $V_a = 0.2 \volt$, draw minority carrier profile as a function of $x$.
+			Include the values at the edge of the depletion region and far away from the junction.
+		\item
+			For a forward bias of $V_a = -0.2 \volt$, draw minority carrier profile as a function of $x$.
+			Include the values at the edge of the depletion region and far away from the junction.
+	\end{enumerate}
+\end{question}
+
+\begin{solution}
+	\begin{enumerate}[leftmargin=*]
+		\item
+			\begin{align*}
+				{n_i}^2(x_n) &= p_0(x_n) n_0(x_n)\\
+				&= 10^9 10^{17}\\
+				&= 10^{26}\\
+				\therefore n_i &= 10^{13}
+			\end{align*}
+			Therefore, the junction is not made of silicon.\\
+			As the intrinsic carrier concentration is higher than that for silicon, the energy band gap of the material is lower than that of silicon.
+		\item
+			Assuming there is no generation and recombination of EHPs in the depletion region, the carrier concentration changes linearly and not exponentially.
+			\begin{figure}[H]
+				\centering
+				\begin{tikzpicture}[yscale = 0.5]
+					\def\xMIN{-5};
+					\def\xMAX{5};
+					\def\yMIN{0};
+					\def\yMAX{18};
+					\def\xP{1};
+					\def\xN{1};
+
+					\begin{scope}[stealth-stealth]
+						\draw (\xMIN,0) -- (\xMAX,0) node [right] {$x$};
+						\draw [-stealth] (-\xN,\yMIN) -- (-\xN,\yMAX) node [above left] {$\log\left[ n_0,p_0 \right]$};
+						\draw [-stealth] (\xP,\yMIN) -- (\xP,\yMAX) node [above right] {$\log\left[ n_0,p_0 \right]$};
+						\filldraw (-\xN,0) circle (1pt) node [below] {$-x_n$};
+						\filldraw (\xP,0) circle (1pt) node [below] {$x_p$};
+						\foreach \y in {\yMIN,...,\yMAX}
+						{
+							\filldraw (-\xN,\y) circle (1pt) node [right] {$\y$};
+						}
+
+						\foreach \y in {\yMIN,...,\yMAX}
+						{
+							\filldraw (\xP,\y) circle (1pt) node [left] {$\y$};
+						}
+					\end{scope}
+
+					\begin{scope}
+						\draw (\xMIN,9) node [left] {$p_0(x_n)$} -- (-\xN,9);
+						\draw (\xP,15) -- (\xMAX,15) node [right] {$p_0(x_p)$};
+						\draw (\xMIN,17) node [left] {$n_0(x_n)$} -- (-\xN,17);
+						\draw (\xP,11) -- (\xMAX,11) node [right] {$n_0(x_p)$};
+					\end{scope}
+				\end{tikzpicture}
+			\end{figure}
+		\item
+			\begin{align*}
+				n_N &= {n_N}_0 e^{\frac{q V_a}{k T}}\\
+				&= 10^{11} e^{\frac{0.2}{0.026}}\\
+				&= 2191.425868 \times 10^{11} \si{\per\centi\metre\cubed}\\
+				&= 2.191425868 \times 10^{14} \si{\per\centi\metre\cubed}
+			\end{align*}
+		\item
+			\begin{align*}
+				J_{n}\left( 0^+ \right) &= q \left( \frac{D_n}{L_n} {n_P}_0 \right) \left( e^{\frac{q V_a}{k T}} - 1 \right)\\
+				&= q \left( \frac{\mu_n k T}{L_n} {n_P}_0 \right) \left( e^{\frac{q V_a}{k T}} - 1 \right)\\
+				&= 9.2 \si{\ampere\per\centi\metre\squared}
+			\end{align*}
+		\item
+			\begin{align*}
+				p_N &= {p_N}_0 e^{\frac{q V_a}{k T}}\\
+				&= 10^9 e^{\frac{0.2}{0.026}}\\
+				&= 2.2 \times 10^{12}\\
+				n_P &= {n_P}_0 e^{\frac{q V_a}{k T}}\\
+				&= 10^{11} e^{\frac{0.2}{0.026}}\\
+				&= 2.2 \times 10^{14}
+			\end{align*}
+			\begin{figure}[H]
+				\centering
+				\begin{tikzpicture}[yscale = 0.5]
+					\def\xMIN{-5};
+					\def\xMAX{5};
+					\def\yMIN{-5};
+					\def\yMAX{5};
+					\def\xP{1};
+					\def\xN{1};
+
+					\begin{scope}[stealth-stealth]
+						\draw (\xMIN,0) -- (\xMAX,0) node [right] {$x$};
+						\filldraw (-\xN,0) circle (1pt) node [below] {$-x_n$};
+						\filldraw (\xP,0) circle (1pt) node [below] {$x_p$};
+					\end{scope}
+
+					\begin{scope}
+						\draw (\xMIN,9) node [left] {$10^9$} to [out = 0, in = 260] (-\xN,12) node [right] {$2.2 \times 10^3$};
+					\end{scope}
+
+					\begin{scope}
+						\draw (\xMAX,11) node [right] {$10^{11}$} to [out = 180, in = 280] (\xP,14) node [left] {$2.2 \times 10^{14}$};
+					\end{scope}
+				\end{tikzpicture}
+			\end{figure}
+		\item
+			\begin{align*}
+				p_N &= {p_N}_0 e^{\frac{q V_a}{k T}}\\
+				&= 10^9 e^{-\frac{0.2}{0.026}}\\
+				&= 4.6 \times 10^5\\
+				n_P &= {n_P}_0 e^{\frac{q V_a}{k T}}\\
+				&= 10^{11} e^{-\frac{0.2}{0.026}}\\
+				&= 4.6 \times 10^7
+			\end{align*}
+			\begin{figure}[H]
+				\centering
+				\begin{tikzpicture}[yscale = 0.5]
+					\def\xMIN{-5};
+					\def\xMAX{5};
+					\def\yMIN{-5};
+					\def\yMAX{5};
+					\def\xP{1};
+					\def\xN{1};
+
+					\begin{scope}[stealth-stealth]
+						\draw (\xMIN,0) -- (\xMAX,0) node [right] {$x$};
+						\filldraw (-\xN,0) circle (1pt) node [below] {$-x_n$};
+						\filldraw (\xP,0) circle (1pt) node [below] {$x_p$};
+					\end{scope}
+
+					\begin{scope}
+						\draw (\xMIN,9) node [left] {$10^9$} to [out = 0, in = 100] (-\xN,5) node [right] {$4.6 \times 10^5$};
+					\end{scope}
+
+					\begin{scope}
+						\draw (\xMAX,11) node [right] {$10^{11}$} to [out = 180, in = 80] (\xP,7) node [left] {$4.6 \times 10^7$};
+					\end{scope}
+				\end{tikzpicture}
+			\end{figure}
+	\end{enumerate}
+\end{solution}
+
+\end{document}
