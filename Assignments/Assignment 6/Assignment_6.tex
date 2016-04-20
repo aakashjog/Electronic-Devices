@@ -1,0 +1,137 @@
+\documentclass[fleqn, a4paper, 10pt, oneside]{amsart}
+\usepackage{exsheets}
+\usepackage{amsmath, amssymb, amsthm} %standard AMS packages
+\usepackage{marginnote} %marginnotes
+\usepackage{gensymb} %miscellaneous symbols
+\usepackage{commath} %differential symbols
+\usepackage{xcolor} %colours
+\usepackage{cancel} %cancelling terms
+\usepackage[free-standing-units, space-before-unit]{siunitx} %formatting units
+\usepackage{tikz, pgfplots} %diagrams
+	\usetikzlibrary{calc, hobby, patterns, intersections, decorations.markings}
+\usepackage{graphicx} %inserting graphics
+\usepackage{hyperref} %hyperlinks
+\usepackage{datetime} %date and time
+\usepackage{enumerate,enumitem} %numbered lists
+\usepackage{float} %inserting floats
+\usepackage{circuitikz}[american voltages, american currents] %circuit diagrams
+\usepackage{booktabs}
+\usepackage{csvsimple}
+\usepackage{todonotes}
+
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}} %adds numbers to specific equations in non-numbered list of equations
+
+\theoremstyle{definition}
+\newtheorem{example}{Example}
+\newtheorem{definition}{Definition}
+
+\theoremstyle{theorem}
+\newtheorem{theorem}{Theorem}
+
+\makeatletter
+\@addtoreset{section}{part} %resets section numbers in new part
+\makeatother
+
+\SetupExSheets{solution/print = true}
+
+%opening
+\title
+[
+	Electronic Devices : Assignment 6
+]
+{
+	Electronic Devices\\
+	Assignment 6
+}
+\author
+{
+	Aakash Jog\\
+	ID : 989323563
+}
+\date{\formatdate{20}{4}{2016}}
+
+\begin{document}
+
+\maketitle
+%\setlength{\mathindent}{0pt}
+
+\begin{question}
+	Consider a PN step junction at $300 \kelvin$ with
+	\begin{align*}
+		N_A &= 10^{16} \si{\per\centi\metre\cubed}\\
+		N_D &= 10^{16} \si{\per\centi\metre\cubed}\\
+		\tau_n &= 0.5 \si{\micro\second}\\
+		\tau_p &= 0.1 \si{\micro\second}\\
+		D_n &= 25 \si{\centi\metre\squared\per\second}\\
+		D_p &= 10 \si{\centi\metre\squared\per\second}
+	\end{align*}
+	Assume that a reverse bias of $5 \volt$ is applied.
+	The junction is uniformly illuminated such that
+	\begin{align*}
+		G_{\text{optical}} &= 10^{21} \si{\per\centi\metre\cubed\per\second}
+	\end{align*}
+	\begin{enumerate}
+		\item
+			Calculate the photocurrent $J_{\text{optical}}$ in the junction.
+		\item
+			Calculate the total current density in the junction.
+		\item
+			Explain the biasing conditions for this illuminated PN junction for operation as a solar cell.
+			Explain why using a PiN junction, instead of the basic PN structure can improve the device performance for solar cells.
+	\end{enumerate}
+\end{question}
+
+\begin{solution}
+	\begin{enumerate}[leftmargin=*]
+		\item
+			\begin{align*}
+				V_{\text{BI}} &= \frac{k T}{q} \ln\left( \frac{N_A N_D}{{n_i}^2} \right)\\
+				&= 0.026 \ln\left( \frac{\left( 10^{16} \right) \left( 10^{16} \right)}{10^{20}} \right)\\
+				&= 0.026 \ln\left( 10^{12} \right)\\
+				&= (0.026) (27.63102112)\\
+				&= 0.7184065491 \volt
+			\end{align*}
+			Therefore,
+			\begin{align*}
+				W &= \sqrt{\frac{2 \varepsilon \varepsilon_0 (V_{\text{BI}} - V_a)}{q} \left( \frac{N_A + N_D}{N_A N_D} \right)}\\
+				&= \sqrt{\frac{(2) (11.8) \left( 8.85 \times 10^{-14} \right) (0.72 + 5)}{1.6 \times 10^{-19}} \left( \frac{2 \times 10^{16}}{10^{32}} \right)}\\
+				&= \sqrt{\frac{(2) (11.8) \left( 8.85 \times 10^{-14} \right) (5.72)}{1.6 \times 10^{-19}} \left( \frac{2 \times 10^{16}}{10^{32}} \right)}\\
+				&= 0.000122203 \si{\centi\metre}\\
+				&= 1.2 \times 10^{-4} \si{\centi\metre}
+			\end{align*}
+			Also,
+			\begin{align*}
+				L_n &= \sqrt{D_n \tau_n}\\
+				&= \sqrt{(25) \left( 0.5 \times 10^{-6} \right)}\\
+				&= 3.54 \times 10^{-3}\\
+				L_p &= \sqrt{D_p \tau_p}\\
+				&= \sqrt{(10) \left( 0.1 \times 10^{-6} \right)}\\
+				&= 1 \times 10^{-3}
+			\end{align*}
+			Therefore,
+			\begin{align*}
+				J_{\text{optical}} &= -q G_{\text{optical}} \left( L_n + L_p + W \right)\\
+				&= -\left( 1.6 \times 10^{-19} \right) \left( 10^{21} \right) \left( 3.54 \times 10^{-3} + 10^{-3} + 1.2 \times 10^{-4} \right)\\
+				&= -\left( 1.6 \times 10^{-19} \right) \left( 10^{21} \right) \left( 4.66 \times 10^{-3} \right)\\
+				&= -0.7456 \si{\ampere\per\centi\metre\squared}
+			\end{align*}
+		\item
+			\begin{align*}
+				J_{\text{total}} &= q \left( \frac{D_p}{L_p} {p_N}_0 +  \frac{D_n}{L_n} {n_P}_0 \right) \left( e^{\frac{q V_a}{k T}} - 1 \right) + J_{\text{optical}}\\
+				&= -q \left( \frac{D_p}{L_p} {p_N}_0 +  \frac{D_n}{L_n} {n_P}_0 \right) + J_{\text{optical}}\\
+				&= -q \left( \frac{D_p}{L_p} \frac{{n_i}^2}{N_D} +  \frac{D_n}{L_n} \frac{{n_i}^2}{N_D} \right) + J_{\text{optical}}\\
+				&= -\left( 1.6 \times 10^{-19} \right) \left( \frac{10}{10^{-3}} \frac{10^{20}}{10^{16}} + \frac{25}{3.54 \times 10^{-3}} \frac{10^{20}}{10^{16}} \right) -0.7456\\
+				&= -\left( 1.6 \times 10^{-19} \right) \left( 10^{8} + 7.1 \times 10^{7} \right) - 0.7456\\
+				&= -27.36 \times 10^{-12} - 0.7456\\
+				&\approx -0.7456 \si{\ampere\per\centi\metre\squared}
+			\end{align*}
+		\item
+			As the total current is negative, the junction works as a solar cell.
+			If the junction is not in reverse bias, the current is not negative, and hence the junction does not function as a solar cell.\\
+			For a PiN junction, the width of the depletion region is larger.
+			Hence, the photocurrent is greater than that for a PN junction.
+			Therefore, a PiN junction is better than a PN junction for use as a solar cell.
+	\end{enumerate}
+\end{solution}
+
+\end{document}
